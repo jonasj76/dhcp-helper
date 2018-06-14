@@ -16,4 +16,4 @@ install:
     mv /usr/sbin/tcpdump /usr/local/bin/; ln -s /usr/local/bin/tcpdump /usr/sbin/"
 
 script:
-  - docker exec -t travis-ci bash -c "cd /travis; ./autogen.sh && ./configure && make && tests/ci/install.sh && tests/ci/run.sh"
+  - docker exec -t travis-ci bash -c "cd /travis; ./autogen.sh && ./configure && make && make check && tests/ci/install.sh && tests/ci/run.sh"

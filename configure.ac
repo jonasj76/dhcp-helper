@@ -9,7 +9,7 @@ AC_CONFIG_SRCDIR([src/dhcp-helper.c])
 AC_PROG_CPP
 AC_PROG_CC
 
-AM_INIT_AUTOMAKE([1.10 foreign -Wall no-define])
+AM_INIT_AUTOMAKE([1.10 foreign -Wall no-define subdir-objects])
 
 # use the C++ compiler for the following checks
 AC_LANG([C])
@@ -60,6 +60,9 @@ AC_SUBST([AM_CFLAGS])
 AC_SUBST([AM_LDFLAGS])
 
 AC_SUBST([CFLAGS])
+
+PKG_CHECK_MODULES([CHECK], [check >= 0.9.4], [have_check=yes], [have_check=no])
+AM_CONDITIONAL([HAVE_CHECK], [test "$have_check" = yes])
 
 AC_CONFIG_FILES([Makefile
 		 tests/Makefile])
